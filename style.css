@@ -1,0 +1,260 @@
+/* Import a retro, pixelated font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Base Reset and Typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Use the new retro pixel font */
+  font-family: 'Press Start 2P', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+  line-height: 1.6;
+  filter: contrast(1.1) saturate(0.95);
+  position: relative;
+}
+
+/* Retro scanlines effect placed underneath everything */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Bloom Animation - using lowkey purple tones with scattered shadows */
+@keyframes bloom {
+  0% { 
+    text-shadow: 
+      0px 0px 2px #a238ff, 
+      2px 2px 4px #d4a3ff, 
+      -2px -2px 4px #8c3dcc;
+  }
+  50% { 
+    text-shadow: 
+      1px 1px 3px #9d3fff, 
+      -1px -1px 3px #b074ff, 
+      2px -2px 5px #a66cfc;
+  }
+  100% { 
+    text-shadow: 
+      0px 0px 2px #aa40ff, 
+      -2px 2px 4px #d5aaff, 
+      2px -2px 4px #9933cc;
+  }
+}
+
+/* Apply the animated bloom below the text (using pseudo-element layering) */
+h1, h2, .tagline, .description, nav ul li a {
+  position: relative;
+  z-index: 1;
+}
+h1::after, h2::after, .tagline::after, .description::after, nav ul li a::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  z-index: -1;
+  animation: bloom 4s infinite alternate;
+}
+
+/* Container for consistent width */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Styling */
+header {
+  background: #1c1c1c; /* flat dark tone */
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 2px solid #333;
+}
+
+.header-inner h1 {
+  font-size: 1.9em;
+  margin-bottom: 8px;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.header-inner .tagline {
+  font-size: 0.8em;
+  margin-bottom: 15px;
+  color: #b0b0b0;
+}
+
+.header-inner .description {
+  font-size: 0.75em;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #d0d0d0;
+}
+
+/* Navigation Styling */
+nav {
+  background: #1e1e1e;
+  box-shadow: none;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #f0f0f0;
+  font-weight: bold;
+  font-size: 0.8em;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #00aaff;
+}
+
+/* Section Styling */
+section {
+  background: #1e1e1e;
+  margin: 20px 0;
+  padding: 30px 20px;
+  border-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  border: 1px solid #333;
+}
+
+.section-inner h2 {
+  color: #00aaff;
+  margin-bottom: 20px;
+  font-size: 1.6em;
+  letter-spacing: 0.5px;
+}
+
+.section-inner p {
+  font-size: 0.8em;
+  margin-bottom: 15px;
+  color: #cfcfcf;
+}
+
+/* List Styling */
+.section-inner ul {
+  list-style: none;
+  padding: 0;
+}
+
+.section-inner ul li {
+  margin: 10px 0;
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  color: #e0e0e0;
+}
+
+.section-inner ul li i {
+  margin-right: 12px;
+  font-size: 0; /* Hide the existing icon text */
+  position: relative;
+}
+
+/* Emoji mappings for icons using pseudo-elements */
+i.fas.fa-info-circle::before { content: "ℹ️ "; font-size: 1.1em; }
+i.fas.fa-home::before { content: "🏠 "; font-size: 1.1em; }
+i.fas.fa-calendar-alt::before { content: "📅 "; font-size: 1.1em; }
+i.fas.fa-bullseye::before { content: "🎯 "; font-size: 1.1em; }
+i.fas.fa-gavel::before { content: "⚖️ "; font-size: 1.1em; }
+i.fas.fa-envelope::before { content: "✉️ "; font-size: 1.1em; }
+i.fas.fa-clock::before { content: "⏰ "; font-size: 1.1em; }
+i.fas.fa-map-marker-alt::before { content: "📍 "; font-size: 1.1em; }
+i.fas.fa-envelope-open-text::before { content: "📬 "; font-size: 1.1em; }
+i.fas.fa-users::before { content: "👥 "; font-size: 1.1em; }
+i.fas.fa-lightbulb::before { content: "💡 "; font-size: 1.1em; }
+i.fas.fa-star::before { content: "⭐ "; font-size: 1.1em; }
+i.fas.fa-trophy::before { content: "🏆 "; font-size: 1.1em; }
+i.fas.fa-handshake::before { content: "🤝 "; font-size: 1.1em; }
+i.fas.fa-brain::before { content: "🧠 "; font-size: 1.1em; }
+i.fas.fa-robot::before { content: "🤖 "; font-size: 1.1em; }
+i.fas.fa-chart-line::before { content: "📈 "; font-size: 1.1em; }
+i.fas.fa-ban::before { content: "🚫 "; font-size: 1.1em; }
+i.fas.fa-search::before { content: "🔍 "; font-size: 1.1em; }
+i.fas.fa-globe::before { content: "🌐 "; font-size: 1.1em; }
+i.fas.fa-smile::before { content: "😊 "; font-size: 1.1em; }
+i.fas.fa-info-sub::before { content: "➕"; font-size: 1.1em; }
+
+/* Footer Styling - anchored to the bottom */
+footer {
+  background: #0d0d0d;
+  padding: 15px 0;
+  text-align: center;
+  border-top: 2px solid #333;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+footer p {
+  font-size: 0.8em;
+  color: #888;
+}
+
+/* Link Styling */
+a {
+  color: #00aaff;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #66d9ff;
+}
+
+/* Retro pixel shader effect simulation for sections */
+section, header, nav, footer {
+  image-rendering: pixelated;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-inner h1 {
+    font-size: 1.8em;
+  }
+  
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  nav ul li {
+    margin: 8px 0;
+  }
+  
+  .section-inner h2 {
+    font-size: 1.4em;
+  }
+}
